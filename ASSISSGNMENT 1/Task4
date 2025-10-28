@@ -1,0 +1,28 @@
+# ...existing code...
+from numbers import Number
+from typing import Iterable, Any
+
+def max_numeric_in_list(lst: Iterable[Any]) -> Number:
+    """
+    Return the largest numeric item in lst.
+    Raises ValueError if empty, TypeError if any element is non-numeric.
+    O(n) time, O(1) extra space.
+    """
+    iterator = iter(lst)
+    try:
+        current_max = next(iterator)
+    except StopIteration:
+        raise ValueError("max_numeric_in_list() requires a non-empty iterable")
+    if not isinstance(current_max, Number):
+        raise TypeError("All elements must be numeric")
+    for item in iterator:
+        if not isinstance(item, Number):
+            raise TypeError("All elements must be numeric")
+        if item > current_max:
+            current_max = item
+    return current_max
+
+if __name__ == "__main__":
+    # quick demo
+    print(max_numeric_in_list([3, 1.5, 7, 2]))  # prints 7
+# ...existing code...

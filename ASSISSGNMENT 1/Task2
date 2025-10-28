@@ -1,0 +1,9 @@
+def reverse_string(s: str) -> str:
+    """Return the reverse of the given string."""
+    if not isinstance(s, str):
+        raise TypeError("reverse_string() requires a string")
+    return s[::-1]
+
+if __name__ == "__main__":
+    s = input("Enter a string: ")
+    print(reverse_string(s))

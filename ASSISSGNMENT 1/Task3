@@ -1,0 +1,38 @@
+def factorial_recursive(n: int) -> int:
+    """
+    Recursive version of factorial.
+    Raises TypeError for non-int and ValueError for negative inputs.
+    """
+    if not isinstance(n, int):
+        raise TypeError("factorial_recursive() requires an integer")
+    if n < 0:
+        raise ValueError("factorial_recursive() requires a non-negative integer")
+    if n <= 1:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+
+def factorial_iterative(n: int) -> int:
+    """
+    Iterative (loop) version of factorial.
+    Raises TypeError for non-int and ValueError for negative inputs.
+    """
+    if not isinstance(n, int):
+        raise TypeError("factorial_iterative() requires an integer")
+    if n < 0:
+        raise ValueError("factorial_iterative() requires a non-negative integer")
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+
+if __name__ == "__main__":
+    try:
+        s = input("Enter a non-negative integer: ").strip()
+        n = int(s)
+    except ValueError:
+        print("Invalid input: please enter an integer.")
+    else:
+        print(f"Recursive: {n}! = {factorial_recursive(n)}")
+        print(f"Iterative: {n}! = {factorial_iterative(n)}")
