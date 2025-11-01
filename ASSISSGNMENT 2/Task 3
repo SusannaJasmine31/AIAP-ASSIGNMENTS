@@ -1,0 +1,57 @@
+from typing import Tuple
+import math
+
+def area_circle(radius: float) -> float:
+    """Area of a circle: π * r^2"""
+    if radius < 0:
+        raise ValueError("radius must be non-negative")
+    return math.pi * radius * radius  # πr²
+
+def area_rectangle(width: float, height: float) -> float:
+    """Area of a rectangle: width * height"""
+    if width < 0 or height < 0:
+        raise ValueError("width and height must be non-negative")
+    return width * height
+
+def area_triangle(base: float, height: float) -> float:
+    """Area of a triangle: 0.5 * base * height"""
+    if base < 0 or height < 0:
+        raise ValueError("base and height must be non-negative")
+    return 0.5 * base * height
+
+def area_trapezoid(a: float, b: float, height: float) -> float:
+    """Area of a trapezoid: 0.5 * (a + b) * height (a and b are parallel sides)"""
+    if a < 0 or b < 0 or height < 0:
+        raise ValueError("sides and height must be non-negative")
+    return 0.5 * (a + b) * height
+
+def area_ellipse(semi_major: float, semi_minor: float) -> float:
+    """Area of an ellipse: π * a * b (a and b are semi-axes)"""
+    if semi_major < 0 or semi_minor < 0:
+        raise ValueError("axes must be non-negative")
+    return math.pi * semi_major * semi_minor
+
+if __name__ == "__main__":
+    # simple CLI to demonstrate usage
+    print("Shapes: circle, rectangle, triangle, trapezoid, ellipse")
+    shape = input("Choose shape: ").strip().lower()
+    try:
+        if shape == "circle":
+            r = float(input("radius: "))
+            print("Area:", area_circle(r))
+        elif shape == "rectangle":
+            w = float(input("width: ")); h = float(input("height: "))
+            print("Area:", area_rectangle(w, h))
+        elif shape == "triangle":
+            b = float(input("base: ")); h = float(input("height: "))
+            print("Area:", area_triangle(b, h))
+        elif shape == "trapezoid":
+            a = float(input("side a: ")); b = float(input("side b: ")); h = float(input("height: "))
+            print("Area:", area_trapezoid(a, b, h))
+        elif shape == "ellipse":
+            a = float(input("semi-major axis a: ")); b = float(input("semi-minor axis b: "))
+            print("Area:", area_ellipse(a, b))
+        else:
+            print("Unknown shape")
+    except Exception as e:
+        print("Error:", e)

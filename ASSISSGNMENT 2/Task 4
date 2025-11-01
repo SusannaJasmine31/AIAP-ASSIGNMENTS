@@ -1,0 +1,29 @@
+from typing import Iterable
+from numbers import Number
+
+def sum_of_squares(values: Iterable[Number]) -> float:
+    """
+    Return the sum of squares of the numeric items in `values`.
+    Raises TypeError if `values` is not iterable or contains non-numeric items.
+    Complexity: O(n) time, O(1) extra space.
+    """
+    try:
+        iterator = iter(values)
+    except TypeError:
+        raise TypeError("sum_of_squares() requires an iterable of numbers")
+
+    total = 0.0
+    for v in iterator:
+        if not isinstance(v, Number):
+            raise TypeError("All elements must be numeric")
+        nv = float(v)
+        total += nv * nv
+    return total
+
+if __name__ == "__main__":
+    s = input("Enter numbers separated by spaces: ").strip()
+    if s == "":
+        print("0.0")
+    else:
+        nums = [float(tok) for tok in s.split()]
+        print(sum_of_squares(nums))

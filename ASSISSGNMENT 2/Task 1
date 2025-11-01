@@ -1,0 +1,103 @@
+from typing import Tuple, Union
+import csv
+import os
+
+def csv_column_stats(path: str, column: Union[int, str] = 0, has_header: bool = True) -> Tuple[float, float, float]:
+    """
+    Read CSV at `path`, extract numeric values from `column` (0-based index or header name),
+    and return (mean, min, max).
+    Raises FileNotFoundError, ValueError (empty CSV / no numeric values / bad column),
+    TypeError for non-numeric cells in the chosen column.
+    """
+    if not os.path.isfile(path):
+        raise FileNotFoundError(path)
+
+    count = 0
+    total = 0.0
+    minimum = None
+    maximum = None
+
+    with open(path, newline='', encoding='utf-8-sig') as fh:
+        reader = csv.reader(fh)
+        try:
+            header = next(reader) if has_header else None
+        except StopIteration:
+            raise ValueError("CSV is empty")
+
+        if isinstance(column, str):
+            if not has_header:
+                raise ValueError("column name provided but has_header is False")
+            try:
+                col_index = header.index(column)
+            except ValueError:
+                raise ValueError(f"Column name not found: {column!r}")
+        else:
+            col_index = int(column)
+
+        for row in reader:
+            if len(row) <= col_index:
+                continue
+            cell = row[col_index].strip()
+            if cell == "":
+                continue
+            try:
+                num = float(cell)
+            except ValueError:
+                raise TypeError(f"Non-numeric value in column {col_index}: {cell!r}")
+
+            count += 1
+            total += num
+            if minimum is None or num < minimum:
+                minimum = num
+            if maximum is None or num > maximum:
+                maximum = num
+
+    if count == 0:
+        raise ValueError("No numeric values found in the specified column")
+
+    mean = total / count
+    return mean, minimum, maximum
+
+def write_default_csv(path: str) -> None:
+    """Create a small default CSV with a single numeric column named 'value'."""
+    rows = [
+        ["value"],
+        ["10"],
+        ["20.5"],
+        ["-3"],
+        ["7"],
+        [""]  # an empty row to show skipping of blanks
+    ]
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        writer = csv.writer(fh)
+        writer.writerows(rows)
+
+
+if __name__ == "__main__":
+    default_path = os.path.join(os.path.dirname(__file__), "default.csv")
+
+    path = input(f"CSV file path (leave empty to use default: {default_path}): ").strip()
+    if path == "":
+        path = default_path
+        if not os.path.exists(path):
+            write_default_csv(path)
+            print(f"Created default CSV at: {path}")
+
+    col = input("Column (index 0-based or header name, default 0): ").strip()
+    has_header_input = input("Has header? [Y/n] (default Y): ").strip().lower()
+    has_header = not (has_header_input in ("n", "no", "0"))
+
+    if col == "":
+        column = 0
+    else:
+        try:
+            column = int(col)
+        except ValueError:
+            column = col  # treat as header name
+
+    try:
+        mean, minimum, maximum = csv_column_stats(path, column=column, has_header=has_header)
+    except Exception as e:
+        print("Error:", e)
+    else:
+        print(f"mean={mean}, min={minimum}, max={maximum}")

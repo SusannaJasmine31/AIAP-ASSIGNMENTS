@@ -1,0 +1,43 @@
+from typing import Iterable, Tuple
+from numbers import Integral
+
+def sum_even_odd(values: Iterable[Integral]) -> Tuple[int, int]:
+    """
+    Return (sum_even, sum_odd) for integer items in `values`.
+    Raises TypeError if `values` is not iterable or contains non-integer items.
+    Complexity: O(n) time, O(1) extra space.
+    """
+    try:
+        iterator = iter(values)
+    except TypeError:
+        raise TypeError("sum_even_odd() requires an iterable of integers")
+
+    sum_even = 0
+    sum_odd = 0
+    for v in iterator:
+        if not isinstance(v, Integral):
+            raise TypeError("All elements must be integers")
+        if v % 2 == 0:
+            sum_even += v
+        else:
+            sum_odd += v
+    return sum_even, sum_odd
+
+
+if __name__ == "__main__":
+    s = input("Enter integers separated by spaces: ").strip()
+    if s == "":
+        print("sum_even=0, sum_odd=0")
+    else:
+        tokens = s.split()
+        nums = []
+        invalid = []
+        for tok in tokens:
+            try:
+                nums.append(int(tok))
+            except ValueError:
+                invalid.append(tok)
+        if invalid:
+            print("Ignored non-integer tokens:", " ".join(invalid))
+        even_sum, odd_sum = sum_even_odd(nums)
+        print(f"sum_even={even_sum}, sum_odd={odd_sum}")
