@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="TASK2.CSS">
+
+    <title>Student Info Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height:100vh;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        nav {
+            background: #34495e;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #2c3e50;
+            border-radius: 4px;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            background: #ecf0f1;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+
+        .login-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .login-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.75rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #2980b9;
+        }
+
+        #error-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Info Portal</h1>
+        <p>Your Gateway to Academic Information</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#grades">Grades</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#profile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="welcome-section">
+            <h2>Welcome to the Student Info Portal</h2>
+            <p>Access your academic information, view courses, check grades, and manage your student profile all in one place.</p>
+        </div>
+
+        <div class="login-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                </div>
+                <button type="submit">Login</button>
+                <div id="error-message"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Student Info Portal. All rights reserved.</p>
+    </footer>
+
+    <script src="TASK3.JS"></script>
+</body>
+</html>

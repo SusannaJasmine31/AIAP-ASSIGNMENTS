@@ -1,0 +1,125 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* Responsive Navigation Bar */
+nav {
+    background: #34495e;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s;
+    display: block;
+}
+
+nav a:hover {
+    background: #2c3e50;
+    border-radius: 4px;
+}
+
+/* Centered Content Section */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.welcome-section {
+    background: #ecf0f1;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.welcome-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* Footer with Light Gray Background */
+footer {
+    background: #e3d7d7;
+    color: #3b3434;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    nav a {
+        width: 200px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .welcome-section {
+        padding: 1.5rem;
+    }
+}
+
+/* Responsive Design for Tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+}
