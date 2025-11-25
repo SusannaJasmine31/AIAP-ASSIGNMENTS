@@ -1,0 +1,4 @@
+{"city": "Gaya", "temperature": 11.95, "humidity": 82, "weather": "mist"}
+{"city": "Warangal", "temperature": 20.54, "humidity": 70, "weather": "clear sky"}
+{"city": "Hyderabad", "temperature": 19.73, "humidity": 88, "weather": "haze"}
+{"city": "Kar\u012bmnagar", "temperature": 20.33, "humidity": 69, "weather": "clear sky"}
